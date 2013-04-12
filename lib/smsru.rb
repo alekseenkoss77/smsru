@@ -21,4 +21,3 @@ module Smsru
     end
   end
 end
-end
