@@ -14,9 +14,10 @@ module Smsru
   end
 
   class Configuration
-    attr_accessor :mail, :api_id, :phone, :sms_url
+    attr_accessor :mail, :api_id, :phone, :sms_url, :from
 
     def initialize
+      self.from = ''
       self.mail = ''
       self.phone = ''
       self.sms_url = "http://sms.ru/sms/send?"
