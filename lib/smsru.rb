@@ -20,7 +20,7 @@ module Smsru
       self.from = ''
       self.mail = ''
       self.phone = ''
-      self.url = "http://sms.ru/sms/send?"
+      self.sms_url = "http://sms.ru/sms/send?"
       self.api_id = ''
     end
   end
