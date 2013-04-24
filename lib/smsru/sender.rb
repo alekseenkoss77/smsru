@@ -43,7 +43,7 @@ module Smsru
           # 100 номеров для отправки 
           numbers = to[i..lim].join(',')    
           # групповая отсылка
-          test_send(numbers,text,api_id=Smsru.configuration.api_id,from=Smsru.configuration.from)
+          p test_send(numbers,text,api_id=Smsru.configuration.api_id,from=Smsru.configuration.from)
           i += 100              
         end
       end
