@@ -41,8 +41,11 @@ module Smsru
           # вычисляем последний индекс 
           lim = ((i+100)-1)     
           # 100 номеров для отправки 
+          p to[i..lim].size
           numbers = to[i..lim].join(',')    
           # групповая отсылка
+          
+          p numbers
           p test_send(numbers,text,api_id=Smsru.configuration.api_id,from=Smsru.configuration.from)
           i += 100              
         end
