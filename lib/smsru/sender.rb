@@ -39,7 +39,7 @@ module Smsru
         i = 0
         while(i < max) do
           # вычисляем последний индекс 
-          lim = ((i+100)-2)     
+          lim = ((i+100)-1)     
           # 100 номеров для отправки 
           p to[i..lim].size
           numbers = to[i..lim].join(',')    
@@ -47,7 +47,7 @@ module Smsru
           
           p numbers
           p test_send(numbers,text,api_id=Smsru.configuration.api_id,from=Smsru.configuration.from)
-          i += 100              
+          i += 99              
         end
       end
 		end
