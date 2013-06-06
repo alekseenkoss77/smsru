@@ -20,6 +20,10 @@ module Smsru
 
 		class << self
 
+      def balance(api_id=Smsru.configuration.api_id)
+        Net::HTTP.get(URI.parse(URI.escape("http://sms.ru/my/balance?" + "api_id=#{api_id}")))
+      end
+
       def sms_send(to,text,api_id=Smsru.configuration.api_id,from=Smsru.configuration.from)
         Net::HTTP.get(URI.parse(URI.escape(Smsru.configuration.sms_url + "api_id=#{api_id}&from=#{from.to_s}&to=#{to}&text=#{text.to_s}")))
       end
@@ -39,7 +43,7 @@ module Smsru
         i = 0
         while(i < max) do
           # вычисляем последний индекс 
-          lim = ((i+99)-1)     
+          lim = ((i+100)-1)     
           # 100 номеров для отправки 
           p to[i..lim].size
           numbers = to[i..lim].join(',')    
@@ -47,7 +51,7 @@ module Smsru
           
           p numbers
           p test_send(numbers.to_s,text,api_id=Smsru.configuration.api_id,from=Smsru.configuration.from)
-          i += 99              
+          i += 100              
         end
       end
 		end

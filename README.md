@@ -1,24 +1,46 @@
-# Smsru
+## Установка
 
-TODO: Write a gem description
-
-## Installation
-
-Add this line to your application's Gemfile:
+Добавляем в Gemfile
 
     gem 'smsru'
 
-And then execute:
+Выполняем:
 
     $ bundle
 
-Or install it yourself as:
+или устанавливаем как:
 
     $ gem install smsru
 
-## Usage
+## Использование
+Для сервиса Sms.ru вам необходимо сконфигурировать его
 
-TODO: Write usage instructions here
+например так
+Smsru.configure do |conf|
+  conf.mail = 'blablabla@email.com'
+  conf.api_id = "e7f6f922-838e-c924-79f9-3c4314f63zbd"
+  conf.from = 'foo'
+end
+
+mail - Ваш Email
+api_id - спец. токен для сервиса
+from - строка отправителя (номер или согласованное название)
+
+Метод отправки сообщения
+Smsru::Sender.single_sms('79539136846', 'test gem')
+
+Пример отправки сообщения
+Smsru::Sender.single_sms('79539136846', 'test gem')
+
+Пример для тестового сообщения
+Smsru::Sender.test_sms('79539136846', 'test gem')
+
+Групповая рассылка (пока не протестировано на людях :))
+
+Smsru::Sender.group_send(to, text, from)
+
+to - массив произвольного размера, функция отправляет запросы по 100 штук
+остальные параметры те же
 
 ## Contributing
 
