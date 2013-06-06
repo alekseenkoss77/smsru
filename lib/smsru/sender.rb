@@ -21,7 +21,13 @@ module Smsru
 		class << self
 
       def balance(api_id=Smsru.configuration.api_id)
-        Net::HTTP.get(URI.parse(URI.escape("http://sms.ru/my/balance?" + "api_id=#{api_id}")))
+        balance = Net::HTTP.get(URI.parse(URI.escape("http://sms.ru/my/balance?" + "api_id=#{api_id}"))).split("\n")
+        if balance[0] == '100'
+          result = balance[1]
+        else
+          result = balance[0]
+        end
+        result
       end
 
       def sms_send(to,text,api_id=Smsru.configuration.api_id,from=Smsru.configuration.from)
