@@ -14,11 +14,11 @@
 require 'net/http'
 
 module Smsru
-	class Sender
+  class Sender
 
     DEFAULT_GROUP_SIZE = 100
 
-		class << self
+    class << self
 
       def balance(api_id=Smsru.configuration.api_id)
         balance = Net::HTTP.get(URI.parse(URI.escape("http://sms.ru/my/balance?" + "api_id=#{api_id}"))).split("\n")
@@ -37,10 +37,10 @@ module Smsru
       def test_send(to,text,api_id=Smsru.configuration.api_id,from=Smsru.configuration.from)
         Net::HTTP.get(URI.parse(URI.escape(Smsru.configuration.sms_url + "api_id=#{api_id}&from=#{from.to_s}&to=#{to}&text=#{text.to_s}&test=1")))
       end
-			# for one of message
+      # for one of message
       def single_sms(to,text,api_id=Smsru.configuration.api_id,from=Smsru.configuration.from)
-				sms_send()
-			end
+        sms_send()
+      end
 
       # групповая отправка смс, по 100 номеров
       def group_send(to,text,api_id=Smsru.configuration.api_id,from=Smsru.configuration.from)
@@ -60,6 +60,6 @@ module Smsru
           i += 100              
         end
       end
-		end
-	end
+    end
+  end
 end
