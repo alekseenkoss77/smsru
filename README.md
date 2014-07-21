@@ -2,45 +2,44 @@
 
 Добавляем в Gemfile
 
-    gem 'smsru'
+    gem 'smsru', github: 'alekseenkoss77/smsru'
 
 Выполняем:
 
     $ bundle
 
-или устанавливаем как:
-
-    $ gem install smsru
-
 ## Использование
 Для сервиса Sms.ru вам необходимо сконфигурировать его
 
-например так
-Smsru.configure do |conf|
-  conf.mail = 'blablabla@email.com'
-  conf.api_id = "e7f6f922-838e-c924-79f9-3c4314f63zbd"
-  conf.from = 'foo'
-end
+Например:
 
-mail - Ваш Email
-api_id - спец. токен для сервиса
+    Smsru.configure do |conf|
+      conf.mail = 'blablabla@email.com'
+      conf.api_id = "e7f6f922-838e-c924-79f9-3c4314f63zbd"
+      conf.from = 'foo'
+    end
+
+mail - Ваш Email<br>
+api_id - спец. токен для сервиса<br>
 from - строка отправителя (номер или согласованное название)
 
 Метод отправки сообщения
-Smsru::Sender.single_sms('79539136846', 'test gem')
+
+    Smsru::Sender.single_sms('79539136846', 'test gem')
 
 Пример отправки сообщения
-Smsru::Sender.single_sms('79539136846', 'test gem')
+
+    Smsru::Sender.single_sms('79539136846', 'test gem')
 
 Пример для тестового сообщения
-Smsru::Sender.test_sms('79539136846', 'test gem')
 
-Групповая рассылка (пока не протестировано на людях :))
+    Smsru::Sender.test_sms('79539136846', 'test gem')
 
-Smsru::Sender.group_send(to, text, from)
+Групповая рассылка (пока не протестировано на людях)
 
-to - массив произвольного размера, функция отправляет запросы по 100 штук
-остальные параметры те же
+    Smsru::Sender.group_send(to, text, from)
+
+to - массив произвольного размера, функция отправляет запросы по 100 штук; остальные параметры те же
 
 ## Contributing
 
