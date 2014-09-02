@@ -2,45 +2,43 @@
 
 Добавляем в Gemfile
 
-    gem 'smsru'
+    gem 'smsru', github: 'alekseenkoss77/smsru'
 
 Выполняем:
 
     $ bundle
 
-или устанавливаем как:
-
-    $ gem install smsru
-
 ## Использование
-Для сервиса Sms.ru вам необходимо сконфигурировать его
+Для сервиса Sms.ru вам необходимо сконфигурировать его.
 
-например так
-Smsru.configure do |conf|
-  conf.mail = 'blablabla@email.com'
-  conf.api_id = "e7f6f922-838e-c924-79f9-3c4314f63zbd"
-  conf.from = 'foo'
-end
+    Smsru.configure do |conf|
+      conf.mail = 'your-mail'
+      conf.api_id = 'your-api-id'
+      conf.from = 'sender-name'
+    end
 
-mail - Ваш Email
-api_id - спец. токен для сервиса
-from - строка отправителя (номер или согласованное название)
+mail - Ваш Email<br>
+api_id - Спец. токен для сервиса<br>
+from - Строка отправителя (номер или согласованное название)
 
-Метод отправки сообщения
-Smsru::Sender.single_sms('79539136846', 'test gem')
+<h4>Отправка сообщения для одного адресата</h4>
 
-Пример отправки сообщения
-Smsru::Sender.single_sms('79539136846', 'test gem')
+    Smsru::API.send_sms(to, text, api_id, from, test)
 
-Пример для тестового сообщения
-Smsru::Sender.test_sms('79539136846', 'test gem')
+to - номер телефона получателя;<br>
+text - текст сообщения в кодировке UTF-8;<br>
+api_id и from - необязательные параметры, если модуль был сконфигурирован ранее;<br>
+test - необязательный параметр, указывающий на то, что сообщение - тестовое (по-умолчанию false)
 
-Групповая рассылка (пока не протестировано на людях :))
+<h4>Групповая рассылка</h4>
 
-Smsru::Sender.group_send(to, text, from)
+    Smsru::API.group_send(to, text, api_id, from, test)
 
-to - массив произвольного размера, функция отправляет запросы по 100 штук
-остальные параметры те же
+to - массив с номерами телефонов; функция отправляет запросы по 100 штук
+
+<h4>Запрос баланса</h4>
+
+    Smsru::API.balance(api_id)
 
 ## Contributing
 
