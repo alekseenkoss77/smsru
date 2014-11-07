@@ -1,0 +1,24 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://sms.ru/sms/send?api_id=your-api-id&from=sender-name&text=Sample%20of%20text%20that%20will%20have%20sended%20inside%20sms.&to=%2079050000000,%2079060000000
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Content-Length:
+      - '26'
+    body:  |-
+      100
+      000-00000
+      000-00000
+      balance=1000
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+recorded_with: VCR 2.0.0
