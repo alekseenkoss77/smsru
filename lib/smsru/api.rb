@@ -19,16 +19,29 @@ module Smsru
         result
       end
 
-      def send_sms(to, text, api_id=Smsru.configuration.api_id, from=Smsru.configuration.from, test=false)
-        Net::HTTP.get(URI.parse(URI.escape(Smsru.configuration.sms_url + "api_id=#{api_id}&from=#{from.to_s}&to=#{to}&text=#{text.to_s}#{'&test=1' if test}")))
+      def send_sms( phone, text, api_id=Smsru.configuration.api_id, from=Smsru.configuration.from, test=Smsru.configuration.test)
+        raw_response = Net::HTTP.get(URI.parse(URI.escape(Smsru.configuration.sms_url + "api_id=#{api_id}&from=#{from.to_s}&to=#{phone}&text=#{text.to_s}#{'&test=1' if test}")))
+        handler_response phone, raw_response
       end
 
       # групповая отправка смс, по 100 номеров
-      def group_send(to, text, api_id=Smsru.configuration.api_id, from=Smsru.configuration.from, test=false)
+      def group_send(to, text, api_id=Smsru.configuration.api_id, from=Smsru.configuration.from, test=Smsru.configuration.test)
         to = to.each_slice(DEFAULT_GROUP_SIZE).to_a
-        to.each do |sub_array|
+        to.map do |sub_array|
           numbers = sub_array.join(',')
-          send_sms(numbers, text, api_id, from, test)           
+          send_sms(numbers, text, api_id, from, test)
+        end
+      end
+
+
+
+      private
+
+      def handler_response phone, raw_response
+        if Smsru.configuration.format
+           Smsru::Response.new( phone, raw_response )
+        else
+          raw_response
         end
       end
     
