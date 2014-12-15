@@ -1,6 +1,7 @@
 require File.expand_path('../smsru/status', __FILE__)
 require File.expand_path('../smsru/api', __FILE__)
 require File.expand_path('../smsru/response', __FILE__)
+require File.expand_path('../smsru/helpers', __FILE__)
 
 module Smsru
   include Status
