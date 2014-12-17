@@ -26,7 +26,7 @@ module Smsru
 
         url = Smsru.configuration.sms_url
         url += "api_id=#{api_id}"
-        url += "&from=#{from}" if from.present?
+        url += "&from=#{from}" if (from and from.to_s.length > 0)
         url += "&to=#{phone}"
         url += "&text=#{text}"
         url += "&test=1" if test

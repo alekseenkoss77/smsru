@@ -8,4 +8,3 @@ end
 
 task :test => :spec
 task :default => :spec
-load 'vcr/tasks/vcr.rake'

@@ -15,3 +15,10 @@ VCR.configure do |c|
   c.hook_into :webmock
   c.default_cassette_options = { :record => :none }
 end
+
+ENV["RAILS_ENV"] ||= 'test'
+
+require 'rails/all'
+require 'rspec/rails'
+
+require "dummy/config/environment"
