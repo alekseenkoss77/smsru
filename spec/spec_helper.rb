@@ -1,6 +1,9 @@
 require "bundler"
 Bundler.setup
 
+require 'rails/all'
+require 'rspec/rails'
+
 require "smsru"
 require "./lib/smsru"
 require 'rspec'
@@ -17,8 +20,5 @@ VCR.configure do |c|
 end
 
 ENV["RAILS_ENV"] ||= 'test'
-
-require 'rails/all'
-require 'rspec/rails'
 
 require "dummy/config/environment"

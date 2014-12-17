@@ -1,7 +1,6 @@
 module Smsru::Railties
   class Config < Rails::Railtie
     initializer "smsru.railties.config" do |app|
-
       # try to load config from separate config file ('smsmru.yml')
       config_path = Rails.root.join("config","smsru.yml")
       params = {}
